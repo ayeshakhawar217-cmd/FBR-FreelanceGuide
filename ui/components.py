@@ -6,6 +6,7 @@ import streamlit as st
 # =========================================================
 
 def render_navbar():
+
     st.html(
         """
         <div class="vf-navbar">
@@ -29,11 +30,13 @@ def render_navbar():
 # =========================================================
 
 def render_hero():
+
     st.html(
         """
         <div class="hero-shell">
 
             <!-- Main content -->
+
             <div class="hero-content">
 
                 <div class="hero-eyebrow">
@@ -60,6 +63,7 @@ def render_hero():
 
 
             <!-- Intelligence pipeline -->
+
             <div class="hero-flow">
 
                 <div class="hero-flow-card">
@@ -157,6 +161,7 @@ def render_hero():
 # =========================================================
 
 def render_input_label():
+
     st.html(
         """
         <div class="input-label">
@@ -171,6 +176,7 @@ def render_input_label():
 # =========================================================
 
 def render_processing_header():
+
     st.html(
         """
         <div class="processing-header">
@@ -230,6 +236,7 @@ def render_stage(
 # =========================================================
 
 def render_result_header():
+
     st.html(
         """
         <div class="result-header">
@@ -275,7 +282,6 @@ def render_result_card(
         status_text = (
             "✓ VERIFIED WITH CAVEAT"
         )
-
 
     st.html(
         f"""
@@ -354,7 +360,6 @@ def render_rule(rule):
         "rate_basis",
         "",
     )
-
 
     st.html(
         f"""
@@ -439,12 +444,10 @@ def render_verification(verification):
         "",
     )
 
-
     display_status = status.replace(
         "_",
         " ",
     )
-
 
     st.html(
         f"""
@@ -492,21 +495,46 @@ def render_caveat(caveat):
 
 def render_source(source):
 
-    filename = source.get(
-        "filename",
-        "FBR document",
-    )
+    # -----------------------------------------------------
+    # Normalize source data
+    # -----------------------------------------------------
 
-    page = source.get(
-        "page",
-        "—",
-    )
+    if isinstance(source, dict):
 
-    reason = source.get(
-        "reason",
-        "",
-    )
+        filename = source.get(
+            "filename",
+            source.get(
+                "source",
+                "FBR document",
+            ),
+        )
 
+        page = source.get(
+            "page",
+            "—",
+        )
+
+        reason = source.get(
+            "reason",
+            "",
+        )
+
+    elif isinstance(source, str):
+
+        filename = source
+        page = "—"
+        reason = ""
+
+    else:
+
+        filename = "FBR document"
+        page = "—"
+        reason = str(source)
+
+
+    # -----------------------------------------------------
+    # Render source card
+    # -----------------------------------------------------
 
     st.html(
         f"""
