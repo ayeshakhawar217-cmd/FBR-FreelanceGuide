@@ -1,6 +1,9 @@
 import time
 import streamlit as st
 
+from rag.vectorstore import get_collection_count
+from rag.ingest import ingest_all_documents
+
 from ui.styles import inject_styles
 from ui.components import (
     render_navbar,
@@ -32,6 +35,16 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="collapsed",
 )
+
+
+# =========================================================
+# BUILD FBR KNOWLEDGE BASE IF EMPTY
+# =========================================================
+
+if get_collection_count() == 0:
+
+    with st.spinner("Preparing FBR knowledge base..."):
+        ingest_all_documents()
 
 
 # =========================================================
@@ -311,7 +324,7 @@ if st.session_state.analysis_result is None:
 
             result = run_freelance_tax_analysis(
                 user_text=user_input,
-                retrieval_results=4,
+                retrieval_results=8,
             )
 
             st.session_state.analysis_result = result

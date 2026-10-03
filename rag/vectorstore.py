@@ -11,13 +11,19 @@ CHROMA_PATH = PROJECT_ROOT / "chroma_db"
 
 
 # Use the existing D: drive cache locally.
-# On Render/Linux, use a project-local cache directory.
+# On Streamlit Cloud/Linux, use a project-local cache directory.
 if os.name == "nt":
-    MODEL_PATH = Path(
-        r"D:\FBR-FreelanceGuide-Cache\models"
-    ) / "all-MiniLM-L6-v2"
+    MODEL_PATH = (
+        Path(r"D:\FBR-FreelanceGuide-Cache\models")
+        / "all-MiniLM-L6-v2"
+    )
 else:
-    MODEL_PATH = PROJECT_ROOT / ".cache" / "models" / "all-MiniLM-L6-v2"
+    MODEL_PATH = (
+        PROJECT_ROOT
+        / ".cache"
+        / "models"
+        / "all-MiniLM-L6-v2"
+    )
 
 
 class LocalEmbeddingFunction:
@@ -27,7 +33,7 @@ class LocalEmbeddingFunction:
     On Windows development:
         D:\\FBR-FreelanceGuide-Cache\\models
 
-    On Render/Linux:
+    On Streamlit Cloud/Linux:
         project/.cache/models
     """
 
@@ -114,3 +120,11 @@ def search_documents(
     )
 
     return results
+
+
+def get_collection_count():
+    """
+    Return the number of documents currently stored
+    in the Chroma collection.
+    """
+    return collection.count()
