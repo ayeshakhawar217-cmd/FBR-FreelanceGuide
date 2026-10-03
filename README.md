@@ -171,10 +171,6 @@ For this reason, the system is designed to **surface uncertainty instead of hidi
 
 **Making tax reasoning simpler, evidence-backed, and accessible for Pakistan's growing freelance economy.**
 
-<br>
 
-<a href="https://fbr-freelanceguide-2026.streamlit.app/">
-  <strong>🚀 Launch FBR FreelanceGuide</strong>
-</a>
 
 </p>
