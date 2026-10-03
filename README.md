@@ -138,117 +138,15 @@ This separation reduces the risk of an LLM inventing or incorrectly calculating 
 
 ---
 
-## Example
-
-### Freelancer Profile
-
-```text
-Profession        → Software Developer
-Clients           → United States
-Annual Proceeds   → PKR 4,800,000
-PSEB Registered   → No
-Payment           → Foreign currency → Pakistani bank account
-```
-
-### Generated Analysis
-
-```text
-Tax Treatment
-Section 154A – Export of Services
-
-Applicable Branch
-Non-PSEB registered IT / IT-enabled services
-
-Applied Rate
-1%
-
-Estimated Amount
-PKR 48,000
-
-Verification
-VERIFIED WITH CAVEAT
-```
-
-The system also identifies required conditions that have **not been explicitly confirmed**, rather than silently assuming them.
-
----
-
 ## Tech Stack
 
-**Frontend**
-
-`Streamlit`
-
-**AI / LLM**
-
-`Groq`
-
-**RAG**
-
-`ChromaDB` · `Sentence Transformers`
-
-**Document Processing**
-
-`PyMuPDF`
-
-**Validation**
-
-`Pydantic`
-
-**Language**
-
-`Python`
-
-**Deployment**
-
-`Streamlit Community Cloud`
-
----
-
-## Project Structure
-
-```text
-FBR-FreelanceGuide/
-│
-├── agents/                 # AI reasoning & verification
-├── data/
-│   └── fbr/
-│       └── documents/      # FBR source documents
-│
-├── rag/                    # Retrieval & vector search
-├── ui/                     # Streamlit UI components
-├── utils/                  # Supporting utilities
-│
-├── app.py                  # Application entry point
-├── requirements.txt
-└── README.md
-```
-
----
-
-## Run Locally
-
-```bash
-git clone https://github.com/ayeshakhawar217-cmd/FBR-FreelanceGuide.git
-
-cd FBR-FreelanceGuide
-
-pip install -r requirements.txt
-
-streamlit run app.py
-```
-
-Add your API credentials through environment variables/secrets before running the application.
-
----
-
-## Deployment
-
-The application is currently deployed on **Streamlit Community Cloud**.
-
-### 🔴 Live Application
-
-**https://fbr-freelanceguide-2026.streamlit.app/**
+- **Language:** Python
+- **Frontend & Deployment:** Streamlit · Streamlit Community Cloud
+- **LLM:** Groq
+- **RAG & Vector Search:** ChromaDB · Sentence Transformers
+- **Document Processing:** PyMuPDF
+- **Validation & Configuration:** Pydantic · python-dotenv
+- **Knowledge Base:** FBR Income Tax Ordinance 2001 · Finance Act 2026 · Withholding Tax Rates Card 2027
 
 ---
 
@@ -264,9 +162,8 @@ For this reason, the system is designed to **surface uncertainty instead of hidi
 
 ## Built For
 
-**FBR AI Transformation & Innovation Challenge**
+**PakAngels AI Transformation & Innovation Hackathon**
 
-### Team FBR FreelanceGuide 🇵🇰
 
 ---
 
