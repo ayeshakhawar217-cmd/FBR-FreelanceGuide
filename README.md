@@ -7,11 +7,10 @@
 [![Multi-Agent](https://img.shields.io/badge/AI-Multi--Agent-6C5CE7?style=flat-square)](#multi-agent-architecture)
 [![RAG](https://img.shields.io/badge/AI-RAG-6C5CE7?style=flat-square)](#knowledge-base)
 
-> **From Tax Complexity to Clarity — Powered by AI.**
+> FBR FreelanceGuide is a specialized **multi-agent AI system** that helps Pakistani freelancers understand their applicable tax treatment through **official FBR-grounded RAG, eligibility-aware rule selection, deterministic calculations, and independent verification**.
 
-FBR FreelanceGuide is a specialized **multi-agent AI system** that helps Pakistani freelancers reason through applicable tax treatment using **official FBR evidence, rule selection, deterministic calculation, and independent verification**.
 
-###  [Try the Live Demo](https://fbr-freelanceguide-2026.streamlit.app/)
+###  🚀  [Try the Live Demo](https://fbr-freelanceguide-2026.streamlit.app/)
 
 ---
 
