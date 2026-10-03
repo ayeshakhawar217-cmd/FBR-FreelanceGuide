@@ -109,7 +109,7 @@ FBR FreelanceGuide is an **AI-assisted research and reasoning tool**, not an off
 
 ---
 
-### 🇵🇰 Built for Pakistan's Digital Workforce
+### 🇵🇰 Built for PakAngels AI Transformation and Innovation Hackathon
 
 **Understand. Calculate. Verify.**
 
