@@ -48,6 +48,16 @@ if get_collection_count() == 0:
 
 
 # =========================================================
+# RAG DEBUG STATUS
+# =========================================================
+
+st.write(
+    "FBR knowledge base chunks:",
+    get_collection_count(),
+)
+
+
+# =========================================================
 # GLOBAL STYLES
 # =========================================================
 
@@ -96,7 +106,7 @@ if st.session_state.analysis_result is None:
     render_input_label()
 
     user_input = st.text_area(
-        label="",
+        label="Freelance situation",
         value=st.session_state.user_input,
         placeholder=(
             "Tell us about your freelance work, clients, "
