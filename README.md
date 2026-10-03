@@ -6,182 +6,112 @@
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
 [![Multi-Agent](https://img.shields.io/badge/AI-Multi--Agent-6C5CE7?style=flat-square)](#multi-agent-architecture)
 [![RAG](https://img.shields.io/badge/AI-RAG-6C5CE7?style=flat-square)](#knowledge-base)
-[![FBR Grounded](https://img.shields.io/badge/Knowledge-FBR%20Sources-198754?style=flat-square)](#knowledge-base)
-[![Streamlit](https://img.shields.io/badge/Deployed-Streamlit-FF4B4B?style=flat-square&logo=streamlit&logoColor=white)](https://streamlit.io/)
 
-> **FBR FreelanceGuide** is a **multi-agent AI tax reasoning and verification platform** built for Pakistani freelancers. It combines specialized AI agents, **FBR-grounded RAG, eligibility-aware reasoning, deterministic calculations, and independent verification** to turn a freelancer's situation into an evidence-backed tax analysis.
+> **From Tax Complexity to Clarity — Powered by AI.**
 
-### 🚀 [Try the Live Demo](https://fbr-freelanceguide-2026.streamlit.app/)
+FBR FreelanceGuide is a specialized **multi-agent AI system** that helps Pakistani freelancers reason through applicable tax treatment using **official FBR evidence, rule selection, deterministic calculation, and independent verification**.
 
----
-
-## Why FBR FreelanceGuide?
-
-Pakistani freelancers often have to navigate complex tax rules across the **Income Tax Ordinance, Finance Acts, withholding tax rates, and FBR guidance**.
-
-The problem isn't simply finding information.
-
-It's determining:
-
-- Which FBR provision applies to a specific freelancer
-- Which conditions are relevant
-- Which rate should actually be applied
-- How much tax follows from that treatment
-- Whether the conclusion is supported by official evidence
-
-**FBR FreelanceGuide uses a specialized multi-agent architecture to turn this into a structured, evidence-backed reasoning process.**
+###  [Try the Live Demo](https://fbr-freelanceguide-2026.streamlit.app/)
 
 ---
 
-## How It Works
+##  Problem
+
+Freelancers can find tax information, but determining **which rule applies to their specific circumstances** can still require navigating multiple provisions, conditions, and rates.
+
+FreelanceGuide focuses on turning that complexity into a structured, evidence-backed reasoning process.
+
+---
+
+##  Multi-Agent Architecture
 
 ```mermaid
 flowchart LR
-    A["Freelancer<br/>Situation"] --> B["Intake<br/>Agent"]
-    B --> C["Retrieval<br/>Agent"]
-    C --> D["Calculation<br/>Agent"]
-    D --> E["Verification<br/>Agent"]
-    E --> F["Evidence-Backed<br/>Result"]
+    A(["Freelancer<br/>Situation"]) --> B["Orchestrator"]
+    B --> C["Intake"]
+    C --> D["Retrieval"]
+    D --> E["Rule Selection"]
+    E --> F["Calculation"]
+    F --> G["Verification"]
+    G --> H(["Verified<br/>Assessment"])
 
-    C -.-> G["Official FBR<br/>Sources"]
-    G -.-> E
+    D -.-> I[("FBR<br/>Knowledge Base")]
+    I -.-> E
+    I -.-> G
+
+    style A fill:#EAF5F0,stroke:#087F5B,stroke-width:2px
+    style H fill:#EAF5F0,stroke:#087F5B,stroke-width:2px
+    style B fill:#102A43,color:#fff,stroke:#102A43
+    style I fill:#EAF5F0,stroke:#087F5B,stroke-width:2px
 ```
 
-### The Multi-Agent Pipeline
-
-**1. Intake Agent — Understand**  
-Extracts tax-relevant facts from the freelancer's natural-language description.
-
-**2. Retrieval Agent — Retrieve**  
-Searches the FBR-grounded knowledge base for relevant provisions, rates, and conditions.
-
-**3. Calculation Agent — Reason & Calculate**  
-Evaluates the retrieved rules against the user's circumstances, identifies the applicable treatment, and performs the deterministic calculation.
-
-**4. Verification Agent — Verify**  
-Independently cross-checks the treatment, rate, calculation, conditions, and supporting evidence.
-
-**Final Output — Explain**  
-Presents the assessment with source references, verification status, and clearly identified caveats.
-
----
-
-## Key Features
-
-| Feature | Description |
+| Agent | Responsibility |
 |---|---|
-| 🤖 **Multi-Agent Architecture** | Specialized agents divide intake, retrieval, calculation, and verification responsibilities |
-| 🧠 **AI Tax Reasoning** | Understands a freelancer's situation in natural language |
-| 📚 **FBR-Grounded RAG** | Retrieves evidence directly from incorporated FBR documents |
-| ⚖️ **Eligibility Analysis** | Considers taxpayer-specific conditions before selecting treatment |
-| 🧮 **Deterministic Calculation** | Keeps numerical tax calculations outside free-form LLM generation |
-| 🔍 **Independent Verification** | Separately checks the proposed treatment and calculation |
-| ⚠️ **Caveat Detection** | Identifies missing or unconfirmed taxpayer information |
-| 📄 **Source Traceability** | Shows supporting FBR documents and page references |
+| **Orchestrator** | Coordinates the assessment workflow |
+| **Intake** | Extracts tax-relevant facts |
+| **Retrieval** | Retrieves relevant FBR evidence |
+| **Rule Selection** | Evaluates conditions and selects applicable treatment |
+| **Calculation** | Performs deterministic calculations |
+| **Verification** | Independently validates the assessment |
 
 ---
 
-## Knowledge Base
+##  Knowledge Base
 
-The system is grounded in official FBR tax material, including:
+The system uses a curated FBR knowledge base containing:
 
 - **Income Tax Ordinance 2001**
 - **Finance Act 2026**
 - **Withholding Tax Rates Card 2027**
 
-```text
-data/
-└── fbr/
-    └── documents/
-        ├── IncomeTaxOrdinance2001.pdf
-        ├── FinanceAct2026.pdf
-        └── WithholdingTaxRatesCard2027.pdf
-```
-
-The documents are processed into searchable chunks, embedded using **Sentence Transformers**, and stored in **ChromaDB** for semantic retrieval.
-
----
-
-## Multi-Agent Architecture
-
-FBR FreelanceGuide separates tax reasoning into specialized agents rather than relying on a single model response.
-
-| Agent | Responsibility |
-|---|---|
-| **Intake Agent** | Converts natural-language input into structured tax-relevant facts |
-| **Retrieval Agent** | Retrieves relevant FBR provisions, rates, and evidence |
-| **Calculation Agent** | Applies the identified treatment and performs deterministic calculations |
-| **Verification Agent** | Independently validates the assessment against retrieved FBR evidence |
-
-### Design Principle
-
-> **One model can generate an answer. Specialized agents can divide responsibility, verify reasoning, and make the result more traceable.**
-
-The architecture separates **understanding, evidence retrieval, calculation, and verification**, reducing dependence on a single generated response.
-
----
-
-## AI Architecture
-
 ```mermaid
-flowchart TD
-    A["Natural Language Input"]
+flowchart LR
+    A["FBR Documents"] --> B["Chunking"]
+    B --> C["Sentence Transformers"]
+    C --> D[("ChromaDB")]
 
-    B["Intake Agent"]
-    C["Retrieval Agent"]
-    D["FBR Evidence"]
-    E["Calculation Agent"]
-    F["Deterministic Calculator"]
-    G["Verification Agent"]
-    H["Final Result"]
+    E["User Query"] --> F["Semantic Retrieval"]
+    D --> F
+    F --> G["Relevant FBR Evidence"]
 
-    A --> B
-    B --> C
-    C --> D
-    D --> E
-    E --> F
-    F --> G
-    D --> G
-    G --> H
+    style D fill:#EAF5F0,stroke:#087F5B,stroke-width:2px
+    style G fill:#EAF5F0,stroke:#087F5B
 ```
 
-### Core Design Principle
+---
 
-> **LLMs reason over tax rules. Deterministic logic performs the arithmetic. Independent verification checks the result against the evidence.**
+##  Key Features
+
+- **Multi-Agent Reasoning** — specialized agents with clearly separated responsibilities
+- **FBR-Grounded RAG** — evidence retrieved from official FBR documents
+- **Eligibility-Aware Rule Selection** — conditions evaluated before treatment selection
+- **Deterministic Calculation** — numerical logic separated from language generation
+- **Independent Verification** — dedicated cross-checking stage
+- **Caveat Detection** — missing or uncertain information is surfaced
+- **Source Traceability** — supporting documents and page references
 
 ---
 
-## Tech Stack
+##  Tech Stack
 
-- **Language:** Python
-- **Frontend & Deployment:** Streamlit · Streamlit Community Cloud
-- **LLM:** Groq
-- **Multi-Agent Architecture:** Specialized Intake · Retrieval · Calculation · Verification Agents
-- **RAG & Vector Search:** ChromaDB · Sentence Transformers
-- **Document Processing:** PyMuPDF
-- **Validation & Configuration:** Pydantic · python-dotenv
-- **Knowledge Base:** FBR Income Tax Ordinance 2001 · Finance Act 2026 · Withholding Tax Rates Card 2027
+**Python** · **Streamlit** · **Groq** · **ChromaDB** · **Sentence Transformers** · **PyMuPDF** · **Pydantic**
+
+### Multi-Agent Layer
+
+`Orchestrator → Intake → Retrieval → Rule Selection → Calculation → Verification`
 
 ---
 
-## Limitations
 
-FBR FreelanceGuide is an **AI-assisted decision-support system**, not an official FBR service or a substitute for professional tax advice.
 
-Tax treatment may depend on facts that are unavailable to the system, changes in legislation, updated FBR notifications, or taxpayer-specific circumstances.
+##  Disclaimer
 
-For this reason, the system is designed to **surface uncertainty instead of hiding it**.
+FBR FreelanceGuide is an **AI-assisted research and reasoning tool**, not an official FBR service or a substitute for professional tax advice. Users should verify important tax decisions against current FBR requirements or with a qualified professional.
 
 ---
 
-## Built For
+### 🇵🇰 Built for Pakistan's Digital Workforce
 
-**PakAngels AI Transformation & Innovation Hackathon**
+**Understand. Calculate. Verify.**
 
----
-
-<p align="center">
-
-**Making tax reasoning simpler, evidence-backed, and accessible for Pakistan's growing freelance economy.**
-
-</p>
+> *From Tax Complexity to Clarity — Powered by AI.*
