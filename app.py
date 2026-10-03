@@ -47,14 +47,7 @@ if get_collection_count() == 0:
         ingest_all_documents()
 
 
-# =========================================================
-# RAG DEBUG STATUS
-# =========================================================
 
-st.write(
-    "FBR knowledge base chunks:",
-    get_collection_count(),
-)
 
 
 # =========================================================
